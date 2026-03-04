@@ -1,0 +1,2090 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Norigami | Sushi & Tortas Ahogadas - Guadalajara</title>
+    <meta name="description" content="Fusión perfecta entre cocina japonesa y tortas ahogadas de Guadalajara">
+    <link rel="icon" href="IMAGES/norigami-logo.png" type="image/png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================
+           RESET & BASE STYLES
+           ========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ==========================================
+           CUSTOM SCROLLBAR
+           ========================================== */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #dc2626;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ef4444;
+        }
+
+        /* ==========================================
+           COLOR VARIABLES
+           ========================================== */
+        :root {
+            --black: #000000;
+            --black-light: #0a0a0a;
+            --gray-dark: #1a1a1a;
+            --gray-medium: #262626;
+            --red: #dc2626;
+            --red-light: #ef4444;
+            --red-dark: #b91c1c;
+            --gold: #fbbf24;
+            --gold-light: #f59e0b;
+            --gold-dark: #d97706;
+            --white: #ffffff;
+            --gray-text: #a3a3a3;
+        }
+
+        /* ==========================================
+           ANIMATIONS
+           ========================================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(220, 38, 38, 0.6);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(10px);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .animate-pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .animate-bounce {
+            animation: bounce 1.5s ease-in-out infinite;
+        }
+
+        /* Stagger delays */
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+
+        /* ==========================================
+           TEXT GRADIENTS
+           ========================================== */
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .text-gradient-red {
+            background: linear-gradient(135deg, #dc2626, #ef4444, #b91c1c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ==========================================
+           GLASS EFFECT
+           ========================================== */
+        .glass {
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* ==========================================
+           NAVIGATION
+           ========================================== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo img {
+            height: 48px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .logo-text span {
+            color: var(--red);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--gray-text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--red), var(--gold));
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--white);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        /* ==========================================
+           HERO SECTION
+           ========================================== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(0, 0, 0, 0.4) 0%,
+                rgba(0, 0, 0, 0.6) 50%,
+                rgba(0, 0, 0, 0.9) 100%
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 1.5rem;
+            max-width: 900px;
+        }
+
+        .hero-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            color: var(--gray-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle span {
+            color: var(--gold);
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--gray-text);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--red);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--red-light);
+            box-shadow: 0 10px 40px rgba(220, 38, 38, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+        }
+
+        .btn-outline:hover {
+            background: var(--gold);
+            color: black;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--gray-text);
+        }
+
+        /* ==========================================
+           SECTION STYLES
+           ========================================== */
+        .section {
+            padding: 6rem 1.5rem;
+            position: relative;
+        }
+
+        .section-dark {
+            background: var(--black);
+        }
+
+        .section-gradient {
+            background: linear-gradient(180deg, var(--black) 0%, var(--black-light) 100%);
+        }
+
+        .section-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--gray-text);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-divider {
+            max-width: 800px;
+            margin: 0 auto;
+            height: 1px;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                var(--red) 20%,
+                var(--gold) 50%,
+                var(--red) 80%,
+                transparent 100%
+            );
+        }
+
+        /* ==========================================
+           CATEGORY CARDS
+           ========================================== */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            position: relative;
+            height: 320px;
+            border-radius: 1rem;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                transparent 0%,
+                rgba(0, 0, 0, 0.3) 50%,
+                rgba(0, 0, 0, 0.9) 100%
+            );
+            z-index: 1;
+            transition: all 0.4s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(220, 38, 38, 0.3);
+        }
+
+        .category-card:hover::before {
+            background: linear-gradient(
+                180deg,
+                transparent 0%,
+                rgba(220, 38, 38, 0.2) 50%,
+                rgba(0, 0, 0, 0.95) 100%
+            );
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .category-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .category-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            z-index: 2;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .category-description {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+        }
+
+        .category-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--gold);
+            font-weight: 500;
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        /* ==========================================
+           MENU SECTION
+           ========================================== */
+        .menu-tabs {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            scrollbar-width: none;
+        }
+
+        .menu-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .menu-tab {
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            background: var(--gray-dark);
+            border: none;
+            color: var(--gray-text);
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .menu-tab:hover {
+            background: var(--gray-medium);
+            color: white;
+        }
+
+        .menu-tab.active {
+            background: linear-gradient(135deg, var(--red), var(--red-dark));
+            color: white;
+            box-shadow: 0 4px 20px rgba(220, 38, 38, 0.4);
+        }
+
+        .menu-content {
+            display: none;
+        }
+
+        .menu-content.active {
+            display: block;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1rem;
+        }
+
+        .product-card {
+            background: linear-gradient(135deg, var(--black-light), var(--gray-dark));
+            border: 1px solid var(--gray-medium);
+            border-radius: 1rem;
+            padding: 1.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 40px -15px rgba(251, 191, 36, 0.2);
+        }
+
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .product-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .product-name {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .product-description {
+            color: var(--gray-text);
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .product-price {
+            background: linear-gradient(135deg, var(--red), var(--red-dark));
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+        }
+
+        .vegetarian-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #22c55e;
+            padding: 2px 8px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* ==========================================
+           ABOUT SECTION
+           ========================================== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .about-content h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            color: var(--gray-text);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .about-content p strong {
+            color: white;
+        }
+
+        .about-content p .text-red {
+            color: var(--red);
+        }
+
+        .about-content p .text-gold {
+            color: var(--gold);
+        }
+
+        .about-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .about-feature svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .about-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .about-gallery img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 1rem;
+        }
+
+        .about-gallery img:nth-child(1),
+        .about-gallery img:nth-child(4) {
+            height: 200px;
+        }
+
+        .about-gallery img:nth-child(2),
+        .about-gallery img:nth-child(3) {
+            height: 140px;
+        }
+
+        /* ==========================================
+           CONTACT SECTION
+           ========================================== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-card {
+            background: var(--black-light);
+            border: 1px solid var(--gray-medium);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            border-color: var(--red);
+            transform: translateY(-4px);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+        .contact-icon.red {
+            background: rgba(220, 38, 38, 0.2);
+        }
+
+        .contact-icon.gold {
+            background: rgba(251, 191, 36, 0.2);
+        }
+
+        .contact-icon.green {
+            background: rgba(34, 197, 94, 0.2);
+        }
+
+        .contact-icon svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .contact-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p {
+            color: var(--gray-text);
+            line-height: 1.6;
+        }
+
+        .contact-card a {
+            color: var(--red-light);
+            text-decoration: none;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        .map-container {
+            background: linear-gradient(135deg, var(--gray-dark), var(--black-light));
+            border-radius: 1rem;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--gray-medium);
+        }
+
+        .map-placeholder {
+            text-align: center;
+        }
+
+        .map-placeholder svg {
+            width: 48px;
+            height: 48px;
+            color: var(--red);
+            margin-bottom: 1rem;
+        }
+
+        .map-placeholder h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .map-placeholder p {
+            color: var(--gray-text);
+        }
+
+        /* ==========================================
+           FOOTER
+           ========================================== */
+        .footer {
+            background: var(--black-light);
+            border-top: 1px solid var(--gray-dark);
+            padding: 3rem 1.5rem;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-brand img {
+            height: 48px;
+            width: auto;
+        }
+
+        .footer-brand span {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-brand span span {
+            color: var(--red);
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--gray-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--red);
+            transform: translateY(-2px);
+        }
+
+        .footer-copyright {
+            text-align: right;
+            color: var(--gray-text);
+            font-size: 0.9rem;
+        }
+
+        /* ==========================================
+           RESPONSIVE STYLES
+           ========================================== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .mobile-menu {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(12px);
+                padding: 1.5rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+                pointer-events: none;
+            }
+
+            .mobile-menu.open {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .mobile-menu a {
+                display: block;
+                padding: 1rem;
+                color: var(--gray-text);
+                text-decoration: none;
+                border-bottom: 1px solid var(--gray-medium);
+            }
+
+            .mobile-menu a:hover {
+                color: white;
+                background: var(--gray-dark);
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+
+            .about-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .about-gallery img {
+                height: 200px !important;
+            }
+
+            .footer-container {
+                text-align: center;
+            }
+
+            .footer-brand {
+                justify-content: center;
+            }
+
+            .footer-copyright {
+                text-align: center;
+            }
+        }
+
+        /* ==========================================
+           UTILITY CLASSES
+           ========================================== */
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+        .text-right { text-align: right; }
+        
+        .mt-4 { margin-top: 1rem; }
+        .mt-8 { margin-top: 2rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-8 { margin-bottom: 2rem; }
+
+        .hidden { display: none; }
+        
+        /* SVG Icons */
+        .icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .icon-sm {
+            width: 18px;
+            height: 18px;
+        }
+    </style>
+</head>
+<body>
+    <!-- ==========================================
+         NAVIGATION
+         ========================================== -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="logo">
+                <!-- 📷 REEMPLAZAR: Logo del restaurante -->
+                <img src="IMAGES/norigami-logo.png" alt="Norigami Logo">
+                <span class="logo-text">NO<span>RI</span>GAMI</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#hero" class="nav-link">Inicio</a></li>
+                <li><a href="#categorias" class="nav-link">Categorías</a></li>
+                <li><a href="#menu" class="nav-link">Menú</a></li>
+                <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú">
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#hero">Inicio</a>
+        <a href="#categorias">Categorías</a>
+        <a href="#menu">Menú</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+    </div>
+
+    <!-- ==========================================
+         HERO SECTION
+         ========================================== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <!-- 📷 REEMPLAZAR: Imagen hero principal (sugerido: 1920x1080px) -->
+            <img src="IMAGES/hero-sushi.jpg" alt="Norigami Restaurant">
+        </div>
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <!-- 📷 REEMPLAZAR: Logo para el hero (puede ser el mismo) -->
+            <img src="IMAGES/norigami-logo.png" alt="Norigami" class="hero-logo animate-float">
+            
+            <h1 class="hero-title animate-fade-in">
+                NO<span class="text-gradient-red">RI</span>GAMI
+            </h1>
+            
+            <p class="hero-subtitle animate-fade-in delay-200">
+                Sushi & <span>Tortas Ahogadas</span>
+            </p>
+            
+            <p class="hero-description animate-fade-in delay-300">
+                La fusión perfecta entre la tradición japonesa y el sabor auténtico de Guadalajara
+            </p>
+            
+            <div class="hero-buttons animate-fade-in delay-400">
+                <a href="#menu" class="btn btn-primary">
+                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                    </svg>
+                    Ver Menú
+                </a>
+                <a href="#contacto" class="btn btn-outline">
+                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    Ubicación
+                </a>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator animate-bounce">
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         CATEGORIES SECTION
+         ========================================== -->
+    <section class="section section-dark" id="categorias">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Nuestras <span class="text-gradient-gold">Categorías</span></h2>
+                <p class="section-description">
+                    Explora nuestra amplia variedad de platillos, desde sushi artesanal hasta las auténticas tortas ahogadas
+                </p>
+            </div>
+            
+            <div class="categories-grid">
+                <!-- Category 1: Sushi -->
+                <div class="category-card" onclick="scrollToCategory('sushi')">
+                    <!-- 📷 REEMPLAZAR: Imagen de sushi (sugerido: 600x400px) -->
+                    <img src="IMAGES/cat-sushi.jpg" alt="Sushi Rolls">
+                    <div class="category-content">
+                        <h3 class="category-title">Sushi Rolls</h3>
+                        <p class="category-description">Rolls artesanales y especiales</p>
+                        <span class="category-link">
+                            Ver menú
+                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Category 2: Tortas Ahogadas -->
+                <div class="category-card" onclick="scrollToCategory('tortas')">
+                    <!-- 📷 REEMPLAZAR: Imagen de tortas ahogadas (sugerido: 600x400px) -->
+                    <img src="IMAGES/cat-tortas.jpg" alt="Tortas Ahogadas">
+                    <div class="category-content">
+                        <h3 class="category-title">Tortas Ahogadas</h3>
+                        <p class="category-description">Tradición jalisciense</p>
+                        <span class="category-link">
+                            Ver menú
+                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Category 3: Yakimeshi -->
+                <div class="category-card" onclick="scrollToCategory('yakimeshi')">
+                    <!-- 📷 REEMPLAZAR: Imagen de yakimeshi (sugerido: 600x400px) -->
+                    <img src="IMAGES/cat-yakimeshi.jpg" alt="Yakimeshi">
+                    <div class="category-content">
+                        <h3 class="category-title">Yakimeshi</h3>
+                        <p class="category-description">Arroz japonés salteado</p>
+                        <span class="category-link">
+                            Ver menú
+                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Category 4: Tepanyaki -->
+                <div class="category-card" onclick="scrollToCategory('tepanyaki')">
+                    <!-- 📷 REEMPLAZAR: Imagen de tepanyaki (sugerido: 600x400px) -->
+                    <img src="IMAGES/cat-tepanyaki.jpg" alt="Tepanyaki">
+                    <div class="category-content">
+                        <h3 class="category-title">Tepanyaki</h3>
+                        <p class="category-description">Cocina en plancha</p>
+                        <span class="category-link">
+                            Ver menú
+                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Category 5: Noodles -->
+                <div class="category-card" onclick="scrollToCategory('noodles')">
+                    <!-- 📷 REEMPLAZAR: Imagen de noodles (sugerido: 600x400px) -->
+                    <img src="IMAGES/cat-noodles.jpg" alt="Noodles">
+                    <div class="category-content">
+                        <h3 class="category-title">Noodles</h3>
+                        <p class="category-description">Fideos salteados</p>
+                        <span class="category-link">
+                            Ver menú
+                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Category 6: Entradas -->
+                <div class="category-card" onclick="scrollToCategory('entradas')">
+                    <!-- 📷 REEMPLAZAR: Imagen de entradas (sugerido: 600x400px) -->
+                    <img src="IMAGES/cat-entradas.jpg" alt="Entradas">
+                    <div class="category-content">
+                        <h3 class="category-title">Entradas</h3>
+                        <p class="category-description">Para comenzar</p>
+                        <span class="category-link">
+                            Ver menú
+                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Category 7: Tostadas -->
+                <div class="category-card" onclick="scrollToCategory('tostadas')">
+                    <!-- 📷 REEMPLAZAR: Imagen de tostadas (sugerido: 600x400px) -->
+                    <img src="IMAGES/cat-tostadas.jpg" alt="Tostadas">
+                    <div class="category-content">
+                        <h3 class="category-title">Tostadas</h3>
+                        <p class="category-description">Tradicionales</p>
+                        <span class="category-link">
+                            Ver menú
+                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Category 8: Combos -->
+                <div class="category-card" onclick="scrollToCategory('combos')">
+                    <!-- 📷 REEMPLAZAR: Imagen de combos (sugerido: 600x400px) -->
+                    <img src="IMAGES/cat-combo.jpg" alt="Combos">
+                    <div class="category-content">
+                        <h3 class="category-title">Combos</h3>
+                        <p class="category-description">Los más pedidos</p>
+                        <span class="category-link">
+                            Ver menú
+                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ==========================================
+         MENU SECTION
+         ========================================== -->
+    <section class="section section-dark" id="menu">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Nuestro <span class="text-gradient-red">Menú</span></h2>
+                <p class="section-description">
+                    Cada platillo es preparado con ingredientes frescos y mucho amor
+                </p>
+            </div>
+            
+            <!-- Menu Tabs -->
+            <div class="menu-tabs">
+                <button class="menu-tab active" data-category="entradas">Entradas</button>
+                <button class="menu-tab" data-category="yakimeshi">Yakimeshi</button>
+                <button class="menu-tab" data-category="tepanyaki">Tepanyaki</button>
+                <button class="menu-tab" data-category="noodles">Noodles</button>
+                <button class="menu-tab" data-category="sushi">Sushi Rolls</button>
+                <button class="menu-tab" data-category="tortas">Tortas Ahogadas</button>
+                <button class="menu-tab" data-category="tostadas">Tostadas</button>
+                <button class="menu-tab" data-category="hamburguesas">Hamburguesas</button>
+                <button class="menu-tab" data-category="combos">Combos</button>
+                <button class="menu-tab" data-category="postres">Postres</button>
+            </div>
+            
+            <!-- Entradas -->
+            <div class="menu-content active" id="menu-entradas">
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Kushiyaki Queso</h4>
+                                <p class="product-description">Brochetas empanizadas de queso manchego y philadelphia (3 pz)</p>
+                            </div>
+                            <span class="product-price">$89</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Kushiyaki Mixto</h4>
+                                <p class="product-description">Brochetas combinadas con plátano, camarón o surimi (3 pz)</p>
+                            </div>
+                            <span class="product-price">$93</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Gyozas Cerdo</h4>
+                                <p class="product-description">Raviolis fritos rellenos de cerdo con refrito de pepino (6 pz)</p>
+                            </div>
+                            <span class="product-price">$98</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Gyozas Camarón</h4>
+                                <p class="product-description">Raviolis fritos rellenos de camarón con refrito de pepino (6 pz)</p>
+                            </div>
+                            <span class="product-price">$109</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Ensalada de la Casa <span class="vegetarian-badge">🌱 Veg</span></h4>
+                                <p class="product-description">Surimi, pepino, zanahoria, manzana verde y mango con vinagreta tailandesa</p>
+                            </div>
+                            <span class="product-price">$129</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Mini Dragons</h4>
+                                <p class="product-description">4 pz de esferas de philadelphia rellenas de camarón empanizado con ensalada tampico</p>
+                            </div>
+                            <span class="product-price">$105</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Rollitos Primavera</h4>
+                                <p class="product-description">Hojaldre relleno de philadelphia y proteína a elección (3 pz)</p>
+                            </div>
+                            <span class="product-price">$89</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Yakimeshi -->
+            <div class="menu-content" id="menu-yakimeshi">
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Yakimeshi Vegetariano Grande <span class="vegetarian-badge">🌱 Veg</span></h4>
+                                <p class="product-description">Arroz japonés salteado con vegetales – tamaño grande</p>
+                            </div>
+                            <span class="product-price">$133</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Yakimeshi Pollo Grande</h4>
+                                <p class="product-description">Arroz japonés salteado con pollo a la plancha – tamaño grande</p>
+                            </div>
+                            <span class="product-price">$146</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Yakimeshi Res Grande</h4>
+                                <p class="product-description">Arroz japonés salteado con res – tamaño grande</p>
+                            </div>
+                            <span class="product-price">$167</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Yakimeshi Camarón Grande</h4>
+                                <p class="product-description">Arroz japonés salteado con camarón – tamaño grande</p>
+                            </div>
+                            <span class="product-price">$172</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Yakimeshi al Mango</h4>
+                                <p class="product-description">Arroz grande con camarones tempura, aguacate, philadelphia, salsa especial y ajonjoili</p>
+                            </div>
+                            <span class="product-price">$198</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Yakimeshi al Gratín</h4>
+                                <p class="product-description">Arroz grande con arrachera, queso manchego gratinado, aguacate y chipotle</p>
+                            </div>
+                            <span class="product-price">$198</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tepanyaki -->
+            <div class="menu-content" id="menu-tepanyaki">
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Tepanyaki Vegetariano <span class="vegetarian-badge">🌱 Veg</span></h4>
+                                <p class="product-description">7 verduras a la plancha con salsa de soya y arroz gohan</p>
+                            </div>
+                            <span class="product-price">$139</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Tepanyaki Pollo</h4>
+                                <p class="product-description">Verduras a la plancha con pollo, salsa de soya y arroz gohan</p>
+                            </div>
+                            <span class="product-price">$179</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Tepanyaki Res</h4>
+                                <p class="product-description">Verduras a la plancha con res, salsa de soya y arroz gohan</p>
+                            </div>
+                            <span class="product-price">$180</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Tepanyaki Camarón</h4>
+                                <p class="product-description">Verduras a la plancha con camarón, salsa de soya y arroz gohan</p>
+                            </div>
+                            <span class="product-price">$189</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Tepanyaki Mixto</h4>
+                                <p class="product-description">Verduras a la plancha con pollo y camarón, salsa de soya y arroz gohan</p>
+                            </div>
+                            <span class="product-price">$199</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Tepanyaki Arrachera</h4>
+                                <p class="product-description">Verduras a la plancha con arrachera de cerdo, salsa de soya y arroz gohan</p>
+                            </div>
+                            <span class="product-price">$189</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Noodles -->
+            <div class="menu-content" id="menu-noodles">
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Noodles Vegetariano <span class="vegetarian-badge">🌱 Veg</span></h4>
+                                <p class="product-description">Pasta de trigo con 5 verduras y arroz gohan</p>
+                            </div>
+                            <span class="product-price">$149</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Noodles Pollo</h4>
+                                <p class="product-description">Pasta de trigo con pollo y verduras, acompañado de arroz gohan</p>
+                            </div>
+                            <span class="product-price">$185</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Noodles Res</h4>
+                                <p class="product-description">Pasta de trigo con res y verduras, acompañado de arroz gohan</p>
+                            </div>
+                            <span class="product-price">$187</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Noodles Camarón</h4>
+                                <p class="product-description">Pasta de trigo con camarón y verduras, acompañado de arroz gohan</p>
+                            </div>
+                            <span class="product-price">$199</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Noodles Mixto</h4>
+                                <p class="product-description">Pasta de trigo con pollo y camarón, acompañado de arroz gohan</p>
+                            </div>
+                            <span class="product-price">$208</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Noodles Arrachera</h4>
+                                <p class="product-description">Pasta de trigo con arrachera de cerdo y verduras, acompañado de arroz gohan</p>
+                            </div>
+                            <span class="product-price">$199</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sushi Rolls -->
+            <div class="menu-content" id="menu-sushi">
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Ebby Maki Crunch</h4>
+                                <p class="product-description">Camarón, aguacate, pepino, zanahoria y philadelphia con cobertura de philadelphia, camarón empanizado y crunch</p>
+                            </div>
+                            <span class="product-price">$216</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Takis Roll</h4>
+                                <p class="product-description">Philadelphia, Takis Flamin' Hot, camarón, aguacate y pepino con queso manchego y sriracha</p>
+                            </div>
+                            <span class="product-price">$225</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Sushi Pizza</h4>
+                                <p class="product-description">Base empanizada sin alga con arrachera de cerdo, aguacate, philadelphia, queso fundido y pepperoni</p>
+                            </div>
+                            <span class="product-price">$225</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Bombs Bumm</h4>
+                                <p class="product-description">Dragon ball empanizado con arrachera de cerdo, philadelphia, queso fundido y aguacate</p>
+                            </div>
+                            <span class="product-price">$219</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Fujiyama Horneado</h4>
+                                <p class="product-description">Pastelillo de arroz con ensalada tampico, aguacate, philadelphia, pollo y queso fundido</p>
+                            </div>
+                            <span class="product-price">$229</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Gratinado Especial</h4>
+                                <p class="product-description">Sushi empanizado con camarón, aguacate, philadelphia, queso fundido y ensalada tampico</p>
+                            </div>
+                            <span class="product-price">$198</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Chipocludo</h4>
+                                <p class="product-description">Sushi empanizado con pollo, chipotle, aguacate, philadelphia y ensalada tampico</p>
+                            </div>
+                            <span class="product-price">$198</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Mar y Tierra</h4>
+                                <p class="product-description">Sushi empanizado con res, camarón, philadelphia y vegetales</p>
+                            </div>
+                            <span class="product-price">$155</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tortas Ahogadas -->
+            <div class="menu-content" id="menu-tortas">
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Torta Carnita Maciza</h4>
+                                <p class="product-description">Torta de carnitas estilo guisado</p>
+                            </div>
+                            <span class="product-price">$65</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Torta Buche</h4>
+                                <p class="product-description">Torta de buche estilo guisado</p>
+                            </div>
+                            <span class="product-price">$69</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Torta Lengua</h4>
+                                <p class="product-description">Torta de lengua estilo guisado</p>
+                            </div>
+                            <span class="product-price">$69</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Torta Camarón</h4>
+                                <p class="product-description">Torta con camarón preparado al estilo local</p>
+                            </div>
+                            <span class="product-price">$99</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tostadas -->
+            <div class="menu-content" id="menu-tostadas">
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Tostada Buche/Lengua/Mixta</h4>
+                                <p class="product-description">Tostada con buche, lengua o combinación</p>
+                            </div>
+                            <span class="product-price">$75</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Tostada Cuerito/Pierna</h4>
+                                <p class="product-description">Tostada con cuerito o pierna maciza</p>
+                            </div>
+                            <span class="product-price">$68</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Tostada Vegetariana <span class="vegetarian-badge">🌱 Veg</span></h4>
+                                <p class="product-description">Tostada sin proteína animal</p>
+                            </div>
+                            <span class="product-price">$45</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Taco Dorado</h4>
+                                <p class="product-description">Taco dorado sencillo (pieza)</p>
+                            </div>
+                            <span class="product-price">$14</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Tacos Come y Calla</h4>
+                                <p class="product-description">3 tacos dorados con ensalada de camarón, cebolla, jitomate, pepino y salsas negras</p>
+                            </div>
+                            <span class="product-price">$129</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Hamburguesas -->
+            <div class="menu-content" id="menu-hamburguesas">
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Paquete Revelde #1</h4>
+                                <p class="product-description">Hamburguesa de pollo empanizado o a la plancha con queso amarillo, papas y agua fresca</p>
+                            </div>
+                            <span class="product-price">$169</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Paquete Renegado #2</h4>
+                                <p class="product-description">Hamburguesa de pollo con queso amarillo, manchego, aguacate, papas y agua fresca</p>
+                            </div>
+                            <span class="product-price">$189</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Paquete Indomable #3</h4>
+                                <p class="product-description">Doble carne (pollo y res) con quesos, papas y refresco</p>
+                            </div>
+                            <span class="product-price">$199</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Paquete El Inevitable #4</h4>
+                                <p class="product-description">Hamburguesa con res y camarón, quesos, aguacate, papas y refresco</p>
+                            </div>
+                            <span class="product-price">$249</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Combos -->
+            <div class="menu-content" id="menu-combos">
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Combo #1</h4>
+                                <p class="product-description">1 sushi empanizado (camarón/surimi), 1 yakimeshi chico vegetariano, 1 dedo de queso manchego empanizado, 1 agua fresca 500ml</p>
+                            </div>
+                            <span class="product-price">$179</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Combo #2</h4>
+                                <p class="product-description">1 dragon ball (camarón/surimi), 1 rollito primavera vegetariano, 1 dedo de queso manchego, 1 agua fresca 500ml</p>
+                            </div>
+                            <span class="product-price">$179</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Combo #3</h4>
+                                <p class="product-description">1 yakimeshi mediano (pollo/camarón con aguacate y philadelphia), 2 rollitos primavera vegetarianos, 1 agua fresca 500ml</p>
+                            </div>
+                            <span class="product-price">$179</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Paquete 1 Torta + 2 Tacos + Agua</h4>
+                                <p class="product-description">1 torta, 2 tacos y 1 agua fresca</p>
+                            </div>
+                            <span class="product-price">$99</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Paquete Familiar</h4>
+                                <p class="product-description">5 tortas, 5 tacos y 5 aguas frescas</p>
+                            </div>
+                            <span class="product-price">$480</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Paquete Amigos</h4>
+                                <p class="product-description">10 tortas, 10 tacos, 10 aguas frescas y 5 órdenes de carne</p>
+                            </div>
+                            <span class="product-price">$1,050</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Postres -->
+            <div class="menu-content" id="menu-postres">
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Helado Frito <span class="vegetarian-badge">🌱 Veg</span></h4>
+                                <p class="product-description">Porción individual</p>
+                            </div>
+                            <span class="product-price">$89</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Platanis Flamecados <span class="vegetarian-badge">🌱 Veg</span></h4>
+                                <p class="product-description">Plátano flambeado con ron y canela</p>
+                            </div>
+                            <span class="product-price">$149</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">4 Bolas de Helado <span class="vegetarian-badge">🌱 Veg</span></h4>
+                                <p class="product-description">Porción con 4 bolas de helado</p>
+                            </div>
+                            <span class="product-price">$55</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <h4 class="product-name">Platanitos Holiadrados <span class="vegetarian-badge">🌱 Veg</span></h4>
+                                <p class="product-description">Plátano hojaldrado</p>
+                            </div>
+                            <span class="product-price">$109</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ==========================================
+         ABOUT SECTION
+         ========================================== -->
+    <section class="section section-dark" id="nosotros">
+        <div class="section-container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <h2>Nuestra <span class="text-gradient-gold">Historia</span></h2>
+                    <p>
+                        <strong>Norigami</strong> nace de la pasión por fusionar dos mundos culinarios 
+                        extraordinarios: la refinada cocina japonesa y la vibrante tradición tapatía.
+                    </p>
+                    <p>
+                        En el corazón de Guadalajara, creamos una experiencia gastronómica única donde el 
+                        <span class="text-red">sushi artesanal</span> convive armoniosamente con las 
+                        <span class="text-gold">auténticas tortas ahogadas</span> que definen nuestra identidad jalisciense.
+                    </p>
+                    <p>
+                        Cada platillo es una obra de arte, preparado con ingredientes frescos, técnicas tradicionales 
+                        y una pizca de creatividad que nos hace únicos.
+                    </p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <svg fill="#fbbf24" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span>Ingredientes Premium</span>
+                        </div>
+                        <div class="about-feature">
+                            <svg fill="#dc2626" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>Hecho con Amor</span>
+                        </div>
+                        <div class="about-feature">
+                            <svg fill="#22c55e" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.5 17a4.5 4.5 0 01-1.44-8.765 4.5 4.5 0 018.302-3.046 3.5 3.5 0 014.504 4.272A4 4 0 0115 17H5.5zm3.75-2.75a.75.75 0 001.5 0V9.66l1.95 2.1a.75.75 0 101.1-1.02l-3.25-3.5a.75.75 0 00-1.1 0l-3.25 3.5a.75.75 0 101.1 1.02l1.95-2.1v4.59z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>Opciones Vegetarianas</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-gallery">
+                    <!-- 📷 REEMPLAZAR: Imágenes de galería -->
+                    <img src="IMAGES/gallery-1.jpg" alt="Sushi preparación">
+                    <img src="IMAGES/gallery-2.jpg" alt="Cocina">
+                    <img src="IMAGES/gallery-3.jpg" alt="Tortas">
+                    <img src="IMAGES/gallery-4.jpg" alt="Restaurante">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ==========================================
+         CONTACT SECTION
+         ========================================== -->
+    <section class="section section-dark" id="contacto">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Visítanos en <span class="text-gradient-red">Guadalajara</span></h2>
+                <p class="section-description">
+                    Te esperamos con los brazos abiertos para compartir una experiencia gastronómica inolvidable
+                </p>
+            </div>
+            
+            <div class="contact-grid">
+                <!-- Location Card -->
+                <div class="contact-card">
+                    <div class="contact-icon red">
+                        <svg fill="#dc2626" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3>Ubicación</h3>
+                    <p>
+                        Av. México 1234<br>
+                        Col. Americana<br>
+                        Guadalajara, Jalisco
+                    </p>
+                </div>
+                
+                <!-- Hours Card -->
+                <div class="contact-card">
+                    <div class="contact-icon gold">
+                        <svg fill="#fbbf24" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3>Horario</h3>
+                    <p>
+                        Lunes - Jueves: 1:00 PM - 10:00 PM<br>
+                        Viernes - Sábado: 1:00 PM - 11:00 PM<br>
+                        Domingo: 1:00 PM - 9:00 PM
+                    </p>
+                </div>
+                
+                <!-- Contact Card -->
+                <div class="contact-card">
+                    <div class="contact-icon green">
+                        <svg fill="#22c55e" viewBox="0 0 20 20">
+                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                        </svg>
+                    </div>
+                    <h3>Contacto</h3>
+                    <p>
+                        Tel: (33) 1234-5678<br>
+                        WhatsApp: (33) 8765-4321<br>
+                        <a href="mailto:hola@norigami.mx">hola@norigami.mx</a>
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Map Placeholder -->
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <svg class="animate-pulse-glow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    <h4>Guadalajara, Jalisco</h4>
+                    <p>México</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <!-- 📷 REEMPLAZAR: Logo del footer -->
+                <img src="IMAGES/norigami-logo.png" alt="Norigami">
+                <span>NO<span>RI</span>GAMI</span>
+            </div>
+            
+            <div class="footer-social">
+                <a href="#" aria-label="Instagram">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Facebook">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="WhatsApp">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Email">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                </a>
+            </div>
+            
+            <div class="footer-copyright">
+                <p>© 2024 Norigami.</p>
+                <p>Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         JAVASCRIPT
+         ========================================== -->
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            const icon = mobileMenuBtn.querySelector('svg path');
+            if (mobileMenu.classList.contains('open')) {
+                mobileMenuBtn.innerHTML = `<svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>`;
+            } else {
+                mobileMenuBtn.innerHTML = `<svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>`;
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
+        });
+
+        // Menu tabs functionality
+        const menuTabs = document.querySelectorAll('.menu-tab');
+        const menuContents = document.querySelectorAll('.menu-content');
+
+        menuTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                menuTabs.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Hide all content
+                menuContents.forEach(content => content.classList.remove('active'));
+                
+                // Show corresponding content
+                const category = tab.dataset.category;
+                document.getElementById(`menu-${category}`).classList.add('active');
+            });
+        });
+
+        // Scroll to category function
+        function scrollToCategory(category) {
+            const menuSection = document.getElementById('menu');
+            menuSection.scrollIntoView({ behavior: 'smooth' });
+            
+            // Activate the corresponding tab
+            setTimeout(() => {
+                const tab = document.querySelector(`[data-category="${category}"]`);
+                if (tab) {
+                    tab.click();
+                }
+            }, 500);
+        }
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all category cards and product cards
+        document.querySelectorAll('.category-card, .product-card, .contact-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
